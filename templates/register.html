@@ -1,0 +1,44 @@
+<h1 style="color: DarkOliveGreen; font-family:Papyrus;">Create new user:</h1>
+<div style="margin: 10px" action="/api/user" method="POST">
+    <input name="login" type="text" placeholder="Login" id="login" style="color: ForestGreen"/>
+    <br/>
+    <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            id="password"
+            style="color: OliveDrab"
+    />
+    <br/>
+    <button style="color: ForestGreen; font-family:fantasy" type="submit" onclick="submitForm()">Create new user</button>
+    <h2 style="color:DarkOliveGreen;
+    font-family:Papyrus;
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;">Password must be 8+ symbols</h2>
+</div>
+
+<script>
+    function submitForm() {
+        var login = document.getElementById("login").value;
+        var password = document.getElementById("password").value;
+
+        fetch("/api/user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ login: login, password: password }),
+        }).then(function onFinished() {
+            alert("User was registered!");
+        });
+
+    }
+
+
+
+</script>
